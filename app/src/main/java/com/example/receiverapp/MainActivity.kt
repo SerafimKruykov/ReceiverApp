@@ -12,7 +12,8 @@ import android.widget.TextView
 class MainActivity : AppCompatActivity() {
 
     companion object {
-        private const val RECEIVER_TAG = "Broadcast"
+        private const val INTENT_TAG_HEADER = "Broadcast1"
+        private const val INTENT_TAG_CONTENT = "Broadcast2"
         private const val INTENT_FILTER = "com.skbsc.broadcastnote"
     }
 
@@ -25,7 +26,12 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(receiver, IntentFilter(INTENT_FILTER))
 
         textView = findViewById(R.id.textView)
-        textView.text = textView.text.toString() + "\n ${intent.getStringExtra(RECEIVER_TAG)}"
+        textView.text =
+            textView.text.toString() + "\n ${intent.getStringExtra(INTENT_TAG_HEADER)}" + "\n${
+                intent.getStringExtra(
+                    INTENT_TAG_CONTENT
+                )
+            }"
     }
 
     override fun onDestroy() {
